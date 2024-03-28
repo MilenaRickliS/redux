@@ -1,7 +1,7 @@
 import React from "react";
-import { Connect } from "react-redux";
+import { connect } from "react-redux";
 
-const contador = (props) => {
+const Contador = (props) => {
     return(
         <div>
             <h1>Contador Redux</h1>
@@ -15,6 +15,15 @@ const contador = (props) => {
 
 const mapearEstadoParaProps = (state) => {
     return{
-        count: state.count
+        count: state.count,
     };
 }
+
+const mapearAcoesParaProps = (dispatch) => {
+    return{
+        incremento: () => dispatch({type: 'INCREMENTO'}),
+        decremento: () => dispatch({type: 'DECREMENTO'}),
+    };
+}
+
+export default connect(mapearEstadoParaProps,mapearAcoesParaProps)(Contador)
